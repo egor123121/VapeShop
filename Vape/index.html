@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>VapeStore — Одноразки</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background: #0d0d0d;
+      color: #fff;
+      overflow-x: hidden;
+    }
+    header {
+      text-align: center;
+      padding: 1rem;
+      background: #000000;
+      position: relative;
+    }
+    .container {
+      padding: 1rem;
+    }
+    .category {
+      margin-bottom: 2rem;
+      border: 1px solid #222;
+      border-radius: 10px;
+      background: #1a1a1a;
+      box-shadow: 0 0 10px rgba(0,255,255,0.2);
+    }
+    .toggle-btn {
+      width: 100%;
+      padding: 1rem;
+      font-size: 1.2rem;
+      font-weight: bold;
+      background: #222;
+      color: #0ff;
+      border: none;
+      cursor: pointer;
+    }
+    .products {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+      padding: 1rem;
+      justify-content: center;
+    }
+    .product {
+      background: #2a2a2a;
+      border-radius: 10px;
+      padding: 0.5rem;
+      width: 160px;
+      min-height: 270px;
+      box-shadow: 0 0 5px rgba(0,255,255,0.1);
+      text-align: center;
+    }
+    .product img {
+      width: 100%;
+      height: 120px;
+      object-fit: cover;
+      border-radius: 8px;
+    }
+    select {
+      width: 100%;
+      padding: 0.5rem;
+      background: #000;
+      color: #0ff;
+      border: 1px solid #0ff;
+      border-radius: 5px;
+      margin-top: 0.5rem;
+    }
+    .add-btn {
+      background: #ff0080;
+      border: none;
+      color: white;
+      padding: 0.5rem;
+      border-radius: 5px;
+      margin-top: 0.5rem;
+      cursor: pointer;
+    }
+    .cart-icon {
+      position: absolute;
+      top: 1rem;
+      right: 1rem;
+      background: #ff00aa;
+      padding: 0.5rem 1rem;
+      border-radius: 30px;
+      font-weight: bold;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+    }
+    .cart-icon img {
+      width: 20px;
+      height: 20px;
+    }
+    #cart {
+      position: fixed;
+      top: 0;
+      right: -100%;
+      width: 300px;
+      height: 100%;
+      background: #111;
+      color: white;
+      padding: 1rem;
+      box-shadow: -3px 0 10px rgba(0,0,0,0.5);
+      transition: right 0.3s ease;
+      z-index: 100;
+      display: flex;
+      flex-direction: column;
+    }
+    #cart.open {
+      right: 0;
+    }
+    #cart-items {
+      flex: 1;
+      overflow-y: auto;
+      margin: 1rem 0;
+    }
+    #cart-items li {
+      margin-bottom: 0.5rem;
+    }
+    button.checkout {
+      background: #00ffaa;
+      color: rgb(0, 0, 0);
+      padding: 0.7rem;
+      border: none;
+      border-radius: 5px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+    button.close-cart {
+      background: transparent;
+      color: #ccc;
+      font-size: 1rem;
+      text-align: right;
+      border: none;
+      cursor: pointer;
+      margin-left: auto;
+    }
+    footer {
+      text-align: center;
+      padding: 1rem;
+      background: #111;
+    }
+    @media (max-width: 600px) {
+      .product {
+        width: 140px;
+        min-height: 250px;
+      }
+      .product img {
+        height: 100px;
+     
+      }
+     
+    }
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <img src="1234.png" alt="VapeStore Logo" style="max-width: 150px; height: auto;">
+  
+  <p>Работаем по РФ 😉</p>
+  <div class="cart-icon" onclick="toggleCart()">
+    <img src="https://cdn-icons-png.flaticon.com/512/34/34568.png" alt="Cart" />
+    <span id="cart-count">0</span>
+  </div>
+</header>
+
+<main class="container">
+
+  <!-- Категория: WAKA -->
+  <section class="category">
+    <button class="toggle-btn" onclick="document.getElementById('waka').classList.toggle('open')">WAKA 🔻</button>
+    <div class="products open" id="waka">
+      <div class="product">
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSbZ-XUE3wuBri0vQCJS1MBkE4bTc95wneegA&s">
+        <h3>Waka 20000</h3>
+        <select>
+          <option disabled selected>-- Вкус --</option>
+          <option>Минеральная вода</option>
+          <option>Капучино</option>
+          <option>Тройная Ягода</option>
+          <option>Ежевика Черника Малина</option>
+        </select>
+        <button class="add-btn">В корзину — 17000₽</button>
+      </div>
+      <div class="product">
+        <img src="https://i0.wp.com/gleevape.com/wp-content/uploads/2024/03/Waka-Sopro-PA10000-Puffs-New-Disposable-Vape-Vapes-Puff-10000-Smoking-Original-Supplier-of-Electronic-Cigarette-Vape.jpg">
+        <h3>Waka 10000</h3>
+        <select>
+          <option disabled selected>-- Вкус --</option>
+          <option>Клубника Арбуз</option>
+          <option>Манго Лед</option>
+          <option>Дыня Киви</option>
+          <option>Кола Лед</option>
+        </select>
+        <button class="add-btn">В корзину — 12000₽</button>
+      </div>
+    <div class="product">
+        <img src="https://smoke-village.cdn.webasyst.cloud/wa-data/public/shop/products/64/02/10264/images/17306/17306.600.jpg">
+        <h3>Waka 6000</h3>
+        <select>
+          <option disabled selected>-- Вкус --</option>
+          <option>Клубника Арбуз</option>
+          <option>Манго Лед</option>
+          <option>Дыня Киви</option>
+          <option>Кола Лед</option>
+        </select>
+        <button class="add-btn">В корзину — 8000₽</button>
+      </div>
+      <div class="product">
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSvh-f0euELc4TmurC9J4CwB7g8vEXjHNF81g&s">
+        <h3>Waka 7000</h3>
+        <select>
+          <option disabled selected>-- Вкус --</option>
+          <option>Клубника Арбуз</option>
+          <option>Манго Лед</option>
+          <option>Дыня Киви</option>
+          <option>Кола Лед</option>
+        </select>
+        <button class="add-btn">В корзину — 9000₽</button>
+      </div>
+      <div class="product">
+        <img src="https://vaporking.ae/wp-content/uploads/2025/02/Waka-PA25000-Puffs-Disposable-Vape.jpg">
+        <h3>Waka 25000</h3>
+        <select>
+          <option disabled selected>-- Вкус --</option>
+          <option>Клубника Арбуз</option>
+          <option>Манго Лед</option>
+          <option>Дыня Киви</option>
+          <option>Кола Лед</option>
+        </select>
+        <button class="add-btn">В корзину — 22000₽</button>
+      </div>
+    </div>
+  </section>
+   <section class="category">
+    <button class="toggle-btn" onclick="document.getElementById('waka').classList.toggle('open')">ELF BAR🔻</button>
+    <div class="products open" id="waka">
+      <div class="product">
+        <img src="https://irecommend.ru/sites/default/files/product-images/276010/YUBVUTlDxeTLpS325A.jpeg">
+        <h3>Elf bar bc 10000</h3>
+        <select>
+          <option disabled selected>-- Вкус --</option>
+          <option>Кокос</option>
+          <option>Табак </option>
+          <option>Вишня</option>
+          <option>Мята</option>
+        </select>
+        <button class="add-btn">В корзину — 9000₽</button>
+      </div>
+      <div class="product">
+        <img src="https://image.made-in-china.com/2f0j00nNuqkATcMZbr/100-Original-Elf-Puffs-Bar-Gh-23K-23000-Puffs-Disposable-E-Cig-Triple-Mesh-Coil-14-Flavors-E-Vape-F-Umot-M-Rvi-Nasty-Vaper-Hookah-Factory-Price-Fs-Combo-Gh.webp">
+        <h3>Elf bar 23000</h3>
+        <select>
+          <option disabled selected>-- Вкус --</option>
+          <option>Арбуз-Вишня</option>
+          <option>Клубника-Банан</option>
+          <option>Зеленое Яблоко</option>
+          <option>Арбуз-Холодок</option>
+        </select>
+        <button class="add-btn">В корзину — 13500₽</button>
+      </div>
+    </div>
+  </section>
+   <section class="category">
+    <button class="toggle-btn" onclick="document.getElementById('waka').classList.toggle('open')">Bugatti 🔻</button>
+    <div class="products open" id="waka">
+      <div class="product">
+        <img src="https://maximomayoreo.com/cdn/shop/files/1_7.jpg?v=1716040658">
+        <h3>Bugatti 7000</h3>
+        <select>
+          <option disabled selected>-- Вкус --</option>
+          <option>Манго Сладкая</option>
+          <option>Апельсиновый краш</option>
+          <option>Ананас</option>
+          <option>Ментол</option>
+        </select>
+        <button class="add-btn">В корзину — 8500₽</button>
+      </div>
+      <div class="product">
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS4TS24dtGmBWGKaAZaYuUUg7MAUK5hmo1wEw&s">
+        <h3>Bugatti 12000</h3>
+        <select>
+          <option disabled selected>-- Вкус --</option>
+          <option>Сочный персик </option>
+          <option>Драгонфрут-клубника </option>
+          <option>Сладкая радуга</option>
+          <option>Арбуз лед</option>
+        </select>
+        <button class="add-btn">В корзину — 11500₽</button>
+      </div>
+    </div>
+  </section>
+   <section class="category">
+    <button class="toggle-btn" onclick="document.getElementById('waka').classList.toggle('open')">Ожидание нового поступления....</button>
+    
+
+  <!-- Аналогично добавь другие категории ELF BAR, NEO, R&M, BUGATTI вручную -->
+
+</main>
+
+<aside id="cart">
+  <button class="close-cart" onclick="toggleCart()">Закрыть ❌</button>
+  <h2>Корзина</h2>
+  <ul id="cart-items"></ul>
+  <p><strong>Итого: </strong><span id="total-price">0</span>₽</p>
+  <button class="checkout" onclick="checkout()">Заказать через Telegram</button>
+</aside>
+
+<footer>
+  <p>© 2024 VapeStore — Все права защищены</p>
+</footer>
+
+<script>
+  let cart = [];
+
+  function toggleCart() {
+    document.getElementById("cart").classList.toggle("open");
+  }
+
+  document.querySelectorAll('.add-btn').forEach((btn) => {
+    btn.addEventListener('click', function () {
+      const select = this.previousElementSibling;
+      const flavor = select.value;
+      const price = parseInt(this.textContent.replace(/\D/g, ''));
+      const brand = this.closest('.category').querySelector('.toggle-btn').textContent.split(' ')[0];
+      if (select.selectedIndex <= 0) {
+        alert('Выберите вкус');
+        return;
+      }
+      cart.push({ brand, flavor, price });
+      updateCart();
+    });
+  });
+
+  function updateCart() {
+    const list = document.getElementById("cart-items");
+    const count = document.getElementById("cart-count");
+    const total = document.getElementById("total-price");
+
+    list.innerHTML = '';
+    let totalPrice = 0;
+    cart.forEach((item, index) => {
+      totalPrice += item.price;
+      const li = document.createElement("li");
+      li.innerHTML = `${item.brand} — ${item.flavor} <button onclick="removeItem(${index})">❌</button>`;
+      list.appendChild(li);
+    });
+
+    count.textContent = cart.length;
+    total.textContent = totalPrice;
+  }
+
+  function removeItem(index) {
+    cart.splice(index, 1);
+    updateCart();
+  }
+
+  function checkout() {
+    if (cart.length === 0) return alert("Корзина пуста");
+    const msg = cart.map(i => `${i.brand} - ${i.flavor}`).join('%0A');
+    const url = `https://t.me/Vnmsdjkk?text=${encodeURIComponent(msg)}`;
+    window.open(url, '_blank');
+  }
+</script>
+
+</body>
+</html>
